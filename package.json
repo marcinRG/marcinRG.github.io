@@ -1,0 +1,51 @@
+{
+  "name": "homepage",
+  "version": "1.0.0",
+  "description": "my homepage",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcinRG/marcinRG.github.io.git"
+  },
+  "author": "MG",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcinRG/marcinRG.github.io/issues"
+  },
+  "homepage": "https://github.com/marcinRG/marcinRG.github.io#readme",
+  "devDependencies": {
+    "browserify": "^16.2.3",
+    "del": "^3.0.0",
+    "eslint": "^5.12.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-clean-css": "^4.0.0",
+    "gulp-eslint": "^5.0.0",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^5.0.3",
+    "gulp-inject": "^5.0.2",
+    "gulp-jshint": "^2.1.0",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-nodemon": "^2.4.2",
+    "gulp-plumber": "^1.2.1",
+    "gulp-sass": "^4.0.2",
+    "gulp-sass-import-once": "^2.0.2",
+    "gulp-sass-lint": "^1.4.0",
+    "gulp-stylelint": "^8.0.0",
+    "gulp-task-listing": "^1.1.0",
+    "gulp-uglify": "^3.0.1",
+    "gulp-useref": "^3.1.6",
+    "gulp-util": "^3.0.8",
+    "jshint": "^2.9.7",
+    "jshint-stylish": "^2.2.1",
+    "vinyl-source-stream": "^2.0.0"
+  }
+}
