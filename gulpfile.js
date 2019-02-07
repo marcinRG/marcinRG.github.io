@@ -3,7 +3,7 @@
 var gulp = require('gulp');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
-var $ = require('gulp-load-plugins')({lazy: true});
+var $ = require('gulp-load-plugins')({ lazy: true });
 var sassLint = require('gulp-sass-lint');
 var del = require('del');
 //var sassImportOnce = require('gulp-sass-import-once');
@@ -38,9 +38,9 @@ gulp.task('lint-sass', ['clean-styles'], function () {
 gulp.task('sass-compile', ['lint-sass'], function () {
     msg('Kompilacja plików scss -> css');
     return gulp.src(settings.app.scssFile)
-         //.pipe(sassImportOnce())
+    //.pipe(sassImportOnce())
         .pipe($.sass().on('error', $.sass.logError))
-        .pipe($.autoprefixer({browsers: ['last 3 version', '> 3%']}))
+        .pipe($.autoprefixer({ browsers: ['last 3 version', '> 3%'] }))
         .pipe(gulp.dest(settings.app.cssFolder));
 });
 
@@ -55,7 +55,7 @@ gulp.task('browserify-compil', ['code-check'], function () {
 
 gulp.task('browserify-inject-js', ['browserify-compil'], function () {
     return gulp.src(settings.app.index)
-        .pipe($.inject(gulp.src(settings.app.compiledJs, {read: false}), {relative: true}))
+        .pipe($.inject(gulp.src(settings.app.compiledJs, { read: false }), { relative: true }))
         .pipe(gulp.dest(settings.app.client));
 });
 
@@ -72,7 +72,7 @@ gulp.task('js-watcher', function () {
 
 gulp.task('inject-css', function () {
     return gulp.src(settings.app.index)
-        .pipe($.inject(gulp.src(settings.app.cssFile, {read: false}), {relative: true}))
+        .pipe($.inject(gulp.src(settings.app.cssFile, { read: false }), { relative: true }))
         .pipe(gulp.dest(settings.app.client));
 });
 

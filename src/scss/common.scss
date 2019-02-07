@@ -1,2 +1,8 @@
 @import 'variables';
+@import 'mixins';
 @import 'utils/fonts';
+
+html,
+body {
+  @include set-to-zero;
+}

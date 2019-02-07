@@ -25,4 +25,3 @@ app.use(errorHandler);
 app.listen(port, function () {
     console.log('Express app started on port:' + port);
 });
-

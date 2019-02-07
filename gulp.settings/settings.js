@@ -7,7 +7,6 @@ var sassFolder = devFolder + 'scss/';
 var jsAppFolder = devFolder + 'js/';
 var cssFolder = devFolder + 'css/';
 
-
 var buildPath = './build/';
 
 var bootstrapFolder = './node_modules/bootstrap/';
@@ -45,7 +44,7 @@ var paths = {
     lessStyles: [lessFolder + '**/*.less', '!' + lessFolder + 'font-awesome/' + '**/*.less'],
     scssStyles: [sassFolder + '**/*.scss'],
     lessFile: lessFolder + 'style.less',
-    scssFile: sassFolder + 'style.scss',
+    scssFile: sassFolder + 'style.scss'
 };
 
 var build = {
