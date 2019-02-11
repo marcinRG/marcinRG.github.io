@@ -39,39 +39,45 @@ function Clouds() {
 
     function createClouds() {
         console.log('creating clouds');
-        var numberOfClouds = utils.getRandomInt(3, cloudsShapesArray.length * cloudsLayersArray.length);
+        var numberOfClouds = utils.getRandomInt(10, cloudsShapesArray.length * cloudsLayersArray.length);
         console.log(numberOfClouds);
+        var direction = 1;
         for (var i = 1; i <= numberOfClouds; i++) {
-            var cloud = createCloud();
+            var cloud = createCloud(direction);
             clouds.push(cloud);
             var cloudLayer = cloudsLayersArray[utils.getRandomInt(0, cloudsLayersArray.length - 1)];
             cloudLayer.appendChild(cloud.element);
         }
     }
 
-    function createCloud() {
+    function createCloud(direction) {
         var posX = utils.getRandomInt(0, settings.maxWidthHeight.width);
-        var posY = utils.getRandomInt(0, settings.maxWidthHeight.height);
+        var posY = utils.getRandomInt(0, settings.maxWidthHeight.height - 350);
         var cloudPath = cloudsShapesArray[utils.getRandomInt(0, cloudsShapesArray.length - 1)];
-        var fill = 'Maroon';
-        var stroke = 'Black';
+        var speed = utils.getRandomInt(1, 20);
         var strokeWidth = '1';
-
         var cloud = new Cloud({
             d: cloudPath,
-            fill: fill,
-            stroke: stroke,
+            className: 'cloud',
             'stroke-width': strokeWidth,
             x: posX,
             y: posY,
-            speed: 0,
-            direction: 0
+            speed: speed,
+            direction: direction
         });
         return cloud;
     }
 
+    function animate() {
+        console.log('animate');
+        clouds.forEach(function (cloud) {
+            cloud.animate();
+        });
+    }
+
     return {
-        run: init
+        run: init,
+        animate: animate
     };
 }
 

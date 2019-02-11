@@ -5,11 +5,25 @@ var svgNameSpace = 'http://www.w3.org/2000/svg';
 function createPath(properties) {
     var elem = document.createElementNS(svgNameSpace, 'path');
     elem = setProperties(elem, properties);
+    elem = setClass(elem, properties);
     return elem;
 }
 
-function isPathAttribute(attrName) {
+function createCircle(properties) {
+    var elem = document.createElementNS(svgNameSpace, 'circle');
+    elem = setProperties(elem, properties);
+    elem = setClass(elem, properties);
+    return elem;
+}
+
+function isSVGAttribute(attrName) {
     switch (attrName) {
+        case 'cx':
+            return true;
+        case 'cy':
+            return true;
+        case 'r':
+            return true;
         case 'd':
             return true;
         case 'fill':
@@ -24,10 +38,17 @@ function isPathAttribute(attrName) {
     return false;
 }
 
+function setClass(element, settings) {
+    if (settings.className && element) {
+        element.classList.add(settings.className);
+        return element;
+    }
+}
+
 function setProperties(elem, properties) {
     if (elem && properties) {
         for (var propertyName in properties) {
-            if (properties.hasOwnProperty(propertyName) && isPathAttribute(propertyName)) {
+            if (properties.hasOwnProperty(propertyName) && isSVGAttribute(propertyName)) {
                 elem.setAttributeNS(null, propertyName, properties[propertyName]);
             }
         }
@@ -37,5 +58,6 @@ function setProperties(elem, properties) {
 
 module.exports = {
     nameSpace: svgNameSpace,
-    createPath: createPath
+    createPath: createPath,
+    createCircle: createCircle
 };

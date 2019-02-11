@@ -10,9 +10,66 @@
   @include set-to-zero;
   @include block-border-box;
   position: relative;
-  background-color: green;
+  //transition-duration: 1s;
+  //transition-property: background;
+  background-image: linear-gradient(to bottom, #bde3f1 0%, #fff 6.5%, #efecec 16.25%, #d1bcd9 24.999%,
+          #2ab0ed 25%, #9fd8ef 33.75%, #bfe8f9 39.75%, #e4f5fc 49.999%,
+          #062354 50%, #043077 60%, #486593 74.999%,
+          #ce6c55 75%, #cc7763 82.5%, #dc8c54 89.75%, #dbcbbe 99.999%);
+  //background-position: 0 50%;
+  background-origin: border-box;
+  background-repeat: repeat;
+  background-size: 100% 400%;
   width: 100%;
   height: 100vh;
+  background-position: 0 33.33%;
+  width: 100%;
+  height: 100vh;
+
+  &.sunrise {
+    background-position: 0 0;
+
+    .cloud {
+      fill: #d4d1d9;
+      stroke: #d5a4d9;
+    }
+  }
+
+  &.sunset {
+    background-position: 0 100.3%;
+
+    .cloud {
+      fill: #d9cfa5;
+      stroke: #d9b178;
+    }
+  }
+
+  &.night {
+    background-position: 0 66.9%;
+
+    .cloud {
+      fill: #1475A2;
+      stroke: #0566a2;
+    }
+
+    .star {
+      fill: white;
+      stroke: transparent;
+    }
+
+  }
+
+  .star {
+    fill: transparent;
+    stroke: transparent;
+  }
+
+  .cloud {
+    //transition-duration: 1s;
+    fill: white;
+    stroke: whitesmoke;
+  }
+
 }
 
 .canvas {
@@ -22,6 +79,20 @@
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.layer-controls {
+  z-index: 400;
+}
+
+.landscape {
+
+  &.far {
+    z-index: 5;
+  }
+  &.close {
+    z-index: 15;
+  }
 }
 
 .clouds {
@@ -41,5 +112,4 @@
   &.layer-3 {
     z-index: 30;
   }
-
 }
