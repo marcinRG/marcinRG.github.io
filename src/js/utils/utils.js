@@ -7,8 +7,33 @@ function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function resize(rect1, rect2) {
+function checkViewBox(rect) {
+    return (rect || rect.width || rect.height || rect.minX || rect.minY);
+}
 
+function resizeToFit(viewRect, objRect) {
+    var height;
+    var width;
+    var minX = 0;
+    var minY = 0;
+    var factor = objRect.width / objRect.height;
+    console.log('obj factor');
+    console.log(factor);
+    var factorView = viewRect.width / viewRect.height;
+    console.log('view factor');
+    console.log(factorView);
+    if (factorView <= factor) {
+        height = objRect.height;
+        width = Math.round(viewRect.width * (viewRect.height / objRect.height));
+        minY = objRect.width - viewRect.width;
+        console.log(width);
+    }
+    return {
+        height: height,
+        width: width,
+        minY: minY,
+        minX: minX
+    };
 }
 
 function getAppSize() {
@@ -22,5 +47,7 @@ function getAppSize() {
 
 module.exports = {
     getRandomInt: getRandomIntInclusive,
-    getAppSize: getAppSize
+    getAppSize: getAppSize,
+    resizeToFit: resizeToFit,
+    checkViewBox: checkViewBox
 };

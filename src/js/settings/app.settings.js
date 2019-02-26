@@ -10,7 +10,7 @@ var cloudsLayersSelectors = [
 var starsAndSunLayerSelector = '.display .canvas.clouds.sky';
 var maxWidthHeight = {
     width: 2600,
-    height: 1100
+    height: 1000
 };
 
 module.exports = {

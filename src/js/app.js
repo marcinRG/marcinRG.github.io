@@ -33,18 +33,41 @@
 var utils = require('./utils/utils');
 var Layer = require('./ui/animationLayer');
 
-console.log(utils.getAppSize());
-
-window.addEventListener('resize', function () {
-    console.log(utils.getAppSize());
-});
+var selector = '.canvas.demo';
 
 var layer = new Layer({
-    selectorQuery: '.canvas.demo'
+    selectorQuery: selector
 });
 
-function animate() {
-    //layer.animate();
-    window.requestAnimationFrame(animate);
-}
-window.requestAnimationFrame(animate);
+var canvas = document.querySelector(selector);
+
+window.addEventListener('resize', function () {
+    console.log('----------------------------------------------------');
+    console.log('----------------------------------------------------');
+    //console.log(utils.getAppSize());
+    //console.log(layer.getRect());
+    console.log(utils.resizeToFit(utils.getAppSize(), layer.getRect()));
+    var viewBoxWidthHeight = utils.resizeToFit(utils.getAppSize(), layer.getRect());
+    if (utils.checkViewBox(viewBoxWidthHeight)) {
+        canvas.setAttributeNS('http://www.w3.org/2000/svg',
+            'viewBox', 0 + ' ' + 0 + ' ' +
+            viewBoxWidthHeight.width + ' ' + viewBoxWidthHeight.height);
+    } else {
+        canvas.removeAttribute('viewBox');
+    }
+});
+
+console.log('app size');
+console.log(utils.getAppSize());
+console.log('layer size');
+console.log(layer.getRect());
+console.log(utils.resizeToFit(utils.getAppSize(), layer.getRect()));
+// var viewBoxWidthHeight = utils.resizeToFit(utils.getAppSize(), layer.getRect());
+// canvas.setAttributeNS('http://www.w3.org/2000/svg',
+//     'viewBox', '0 0 ' + viewBoxWidthHeight.width + ' ' + viewBoxWidthHeight.height);
+
+// function animate() {
+//     //layer.animate();
+//     window.requestAnimationFrame(animate);
+// }
+// window.requestAnimationFrame(animate);

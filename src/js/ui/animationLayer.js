@@ -7,15 +7,19 @@ function AnimationLayer(settings) {
     var height = 0;
 
     function init(settings) {
-        console.log('init()');
         width = settings.width || appSettings.maxWidthHeight.width;
         height = settings.height || appSettings.maxWidthHeight.height;
         layer = getLayer(settings);
         if (layer) {
-            console.log(layer);
-            console.log(width);
-            console.log(height);
+            console.log('layer init()');
         }
+    }
+
+    function getRect() {
+        return {
+            width: width,
+            height: height
+        };
     }
 
     function getLayer(settings) {
@@ -30,6 +34,7 @@ function AnimationLayer(settings) {
 
     init(settings);
     return {
+        getRect: getRect,
         animate: animate
     };
 }
