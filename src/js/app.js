@@ -33,35 +33,41 @@
 var utils = require('./utils/utils');
 var Layer = require('./ui/animationLayer');
 
-var selector = '.canvas.demo';
-
+var selector = '.s1';
+var viewBoxWidthHeight;
 var layer = new Layer({
     selectorQuery: selector
 });
 
 var canvas = document.querySelector(selector);
 
-window.addEventListener('resize', function () {
-    console.log('----------------------------------------------------');
-    console.log('----------------------------------------------------');
-    //console.log(utils.getAppSize());
-    //console.log(layer.getRect());
-    console.log(utils.resizeToFit(utils.getAppSize(), layer.getRect()));
-    var viewBoxWidthHeight = utils.resizeToFit(utils.getAppSize(), layer.getRect());
-    if (utils.checkViewBox(viewBoxWidthHeight)) {
-        canvas.setAttributeNS('http://www.w3.org/2000/svg',
-            'viewBox', 0 + ' ' + 0 + ' ' +
-            viewBoxWidthHeight.width + ' ' + viewBoxWidthHeight.height);
-    } else {
-        canvas.removeAttribute('viewBox');
-    }
-});
+// window.addEventListener('resize', function () {
+//     console.log('----------------------------------------------------');
+//     console.log('----------------------------------------------------');
+//     //console.log(utils.getAppSize());
+//     //console.log(layer.getRect());
+//     console.log(utils.resizeToFit(utils.getAppSize(), layer.getRect()));
+//     viewBoxWidthHeight = utils.resizeToFit(utils.getAppSize(), layer.getRect());
+//     if (utils.checkViewBox(viewBoxWidthHeight)) {
+//         canvas.setAttributeNS('http://www.w3.org/2000/svg',
+//             'viewBox', 0 + ' ' + 0 + ' ' +
+//             viewBoxWidthHeight.width + ' ' + viewBoxWidthHeight.height);
+//     } else {
+//         canvas.removeAttribute('viewBox');
+//     }
+// });
 
 console.log('app size');
 console.log(utils.getAppSize());
 console.log('layer size');
 console.log(layer.getRect());
+console.log('new values');
 console.log(utils.resizeToFit(utils.getAppSize(), layer.getRect()));
+viewBoxWidthHeight = utils.resizeToFit(utils.getAppSize(), layer.getRect());
+if (utils.checkViewBox(viewBoxWidthHeight)) {
+    canvas.setAttribute('viewBox', 0 + ' ' + 0 + ' ' +
+        viewBoxWidthHeight.width + ' ' + viewBoxWidthHeight.height);
+}
 // var viewBoxWidthHeight = utils.resizeToFit(utils.getAppSize(), layer.getRect());
 // canvas.setAttributeNS('http://www.w3.org/2000/svg',
 //     'viewBox', '0 0 ' + viewBoxWidthHeight.width + ' ' + viewBoxWidthHeight.height);

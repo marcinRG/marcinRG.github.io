@@ -1,7 +1,7 @@
 'use strict';
 
 var cloudsShapesSelector = '.resources .clouds-resources .cloud';
-var appSelector = '.display';
+var appSelector = '.app';
 var cloudsLayersSelectors = [
     '.display .canvas.clouds.layer-1',
     '.display .canvas.clouds.layer-2',

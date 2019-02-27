@@ -16,18 +16,16 @@ function resizeToFit(viewRect, objRect) {
     var width;
     var minX = 0;
     var minY = 0;
-    var factor = objRect.width / objRect.height;
-    console.log('obj factor');
-    console.log(factor);
-    var factorView = viewRect.width / viewRect.height;
-    console.log('view factor');
-    console.log(factorView);
-    if (factorView <= factor) {
-        height = objRect.height;
-        width = Math.round(viewRect.width * (viewRect.height / objRect.height));
-        minY = objRect.width - viewRect.width;
-        console.log(width);
-    }
+    // var factor = objRect.width / objRect.height;
+    // console.log('obj factor');
+    // console.log(factor);
+    var factorView = objRect.height / viewRect.height;
+    // console.log('view factor');
+    // console.log(factorView);
+    //if (factorView <= factor) {
+    height = Math.round(viewRect.height * factorView);
+    width = Math.round(viewRect.width * factorView);
+    //}
     return {
         height: height,
         width: width,
