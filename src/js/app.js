@@ -62,12 +62,15 @@ console.log(utils.getAppSize());
 console.log('layer size');
 console.log(layer.getRect());
 console.log('new values');
-console.log(utils.resizeToFit(utils.getAppSize(), layer.getRect()));
-viewBoxWidthHeight = utils.resizeToFit(utils.getAppSize(), layer.getRect());
+console.log(utils.getViewBoxParams(utils.getAppSize(), layer.getRect()));
+viewBoxWidthHeight = utils.getViewBoxParams(utils.getAppSize(), layer.getRect());
 if (utils.checkViewBox(viewBoxWidthHeight)) {
-    canvas.setAttribute('viewBox', 0 + ' ' + 0 + ' ' +
+    canvas.setAttribute('viewBox', viewBoxWidthHeight.minX + ' ' + viewBoxWidthHeight.minY + ' ' +
         viewBoxWidthHeight.width + ' ' + viewBoxWidthHeight.height);
+} else {
+    console.log('checbox params error');
 }
+
 // var viewBoxWidthHeight = utils.resizeToFit(utils.getAppSize(), layer.getRect());
 // canvas.setAttributeNS('http://www.w3.org/2000/svg',
 //     'viewBox', '0 0 ' + viewBoxWidthHeight.width + ' ' + viewBoxWidthHeight.height);
