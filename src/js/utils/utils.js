@@ -12,21 +12,27 @@ function checkViewBox(rect) {
 }
 
 function getViewBoxParams(viewRect, objRect) {
-    var minX = 0;
-    var minY = 0;
+    var X = 0;
+    var Y = 0;
+    var maxX = 0;
+    var maxY = 0;
     var viewRatio = 0;
     if ((viewRect.width / viewRect.height) <= (objRect.width / objRect.height)) {
         viewRatio = objRect.height / viewRect.height;
-        minX = Math.round((objRect.width - viewRect.width * viewRatio) / 2);
+        maxX = Math.round(objRect.width - viewRect.width * viewRatio);
+        X = Math.round((objRect.width - viewRect.width * viewRatio) / 2);
     } else {
         viewRatio = objRect.width / viewRect.width;
-        minY = Math.round((objRect.height - viewRect.height * viewRatio) / 2);
+        maxY = Math.round(objRect.height - viewRect.height * viewRatio);
+        Y = Math.round((objRect.height - viewRect.height * viewRatio) / 2);
     }
     return {
         height: Math.round(viewRect.height * viewRatio),
         width: Math.round(viewRect.width * viewRatio),
-        minX: minX,
-        minY: minY
+        X: X,
+        Y: Y,
+        maxX: maxX,
+        maxY: maxY
     };
 }
 
