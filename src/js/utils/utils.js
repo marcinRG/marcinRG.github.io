@@ -11,26 +11,20 @@ function checkViewBox(rect) {
     return (rect && rect.width && rect.height);
 }
 
-function getViewBoxParams(viewRect, objRect) {
-    var X = 0;
-    var Y = 0;
-    var maxX = 0;
-    var maxY = 0;
+function getViewBoxParams(viewRect, objRect, zoom) {
     var viewRatio = 0;
+    var scale = setScale(zoom, 100);
     if ((viewRect.width / viewRect.height) <= (objRect.width / objRect.height)) {
-        viewRatio = objRect.height / viewRect.height;
-        maxX = Math.round(objRect.width - viewRect.width * viewRatio);
-        X = Math.round((objRect.width - viewRect.width * viewRatio) / 2);
+        viewRatio = scale * (objRect.height / viewRect.height);
     } else {
-        viewRatio = objRect.width / viewRect.width;
-        maxY = Math.round(objRect.height - viewRect.height * viewRatio);
-        Y = Math.round((objRect.height - viewRect.height * viewRatio) / 2);
+        viewRatio = scale * (objRect.width / viewRect.width);
     }
+    var maxX = Math.round(objRect.width - viewRect.width * viewRatio);
+    var maxY = Math.round(objRect.height - viewRect.height * viewRatio);
+
     return {
         height: Math.round(viewRect.height * viewRatio),
         width: Math.round(viewRect.width * viewRatio),
-        X: X,
-        Y: Y,
         maxX: maxX,
         maxY: maxY
     };
@@ -45,9 +39,25 @@ function getAppSize() {
     };
 }
 
+function setScale(zoom, defaultZoom) {
+    var objZoom = getValueOrDefault(zoom, defaultZoom);
+    if (objZoom >= 100) {
+        return 100 / objZoom;
+    }
+    return 1;
+}
+
+function getValueOrDefault(value, defaultValue) {
+    if (value) {
+        return value;
+    }
+    return defaultValue;
+}
+
 module.exports = {
     getRandomInt: getRandomIntInclusive,
     getAppSize: getAppSize,
     getViewBoxParams: getViewBoxParams,
-    checkViewBox: checkViewBox
+    checkViewBox: checkViewBox,
+    getValueOrDefault: getValueOrDefault
 };

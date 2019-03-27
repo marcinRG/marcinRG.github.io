@@ -14,16 +14,16 @@ var zoomInBtn = document.querySelector('#zoom-in-btn');
 var zoomOutBtn = document.querySelector('#zoom-out-btn');
 
 leftBtn.addEventListener('click', function () {
-    layer.moveLeft();
+    layer.moveLeft(1);
 });
 rightBtn.addEventListener('click', function () {
-    layer.moveRight();
+    layer.moveRight(1);
 });
 zoomInBtn.addEventListener('click', function () {
-    layer.zoomIn();
+    layer.zoomIn(1);
 });
 zoomOutBtn.addEventListener('click', function () {
-    layer.zoomOut();
+    layer.zoomOut(1);
 });
 
 // var Clouds = require('./model/clouds');
