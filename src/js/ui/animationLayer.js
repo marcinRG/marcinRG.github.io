@@ -14,9 +14,14 @@ function AnimationLayer(settings) {
     var posXPercentage = 50;
     var posYPercentage = 50;
     var zoom = 100;
+    var minZoom = 100;
+    var maxZoom = 250;
+    var minHorizontal = 0;
+    var maxHorizontal = 100;
     var viewBoxWidthHeight;
 
     function init(settings) {
+        console.log(settings);
         width = settings.width || appSettings.maxWidthHeight.width;
         height = settings.height || appSettings.maxWidthHeight.height;
         layer = getLayer(settings);
@@ -37,7 +42,7 @@ function AnimationLayer(settings) {
 
     function zoomIn(value) {
         var move = utils.getValueOrDefault(value, 1);
-        if (isMovePossible(move, zoom, 100, 300, directions.increase)) {
+        if (isMovePossible(move, zoom, minZoom, maxZoom, directions.increase)) {
             zoom = zoom + move;
             viewBoxWidthHeight = utils.getViewBoxParams(utils.getAppSize(), getRect(), zoom);
             setPosition();
@@ -46,7 +51,7 @@ function AnimationLayer(settings) {
 
     function zoomOut(value) {
         var move = utils.getValueOrDefault(value, 1);
-        if (isMovePossible(move, zoom, 100, 300, directions.decrease)) {
+        if (isMovePossible(move, zoom, minZoom, maxZoom, directions.decrease)) {
             zoom = zoom - move;
             viewBoxWidthHeight = utils.getViewBoxParams(utils.getAppSize(), getRect(), zoom);
             setPosition();
@@ -61,7 +66,7 @@ function AnimationLayer(settings) {
 
     function moveLeft(value) {
         var move = utils.getValueOrDefault(value, 1);
-        if (isMovePossible(move, posXPercentage, 0, 100, directions.decrease)) {
+        if (isMovePossible(move, posXPercentage, minHorizontal, maxHorizontal, directions.decrease)) {
             console.log('moveLeft, value:' + move);
             posXPercentage = posXPercentage - move;
             setPosition();
@@ -70,7 +75,7 @@ function AnimationLayer(settings) {
 
     function moveRight(value) {
         var move = utils.getValueOrDefault(value, 1);
-        if (isMovePossible(move, posXPercentage, 0, 100, directions.increase)) {
+        if (isMovePossible(move, posXPercentage, minHorizontal, maxHorizontal, directions.increase)) {
             posXPercentage = posXPercentage + move;
             setPosition();
         }
@@ -81,6 +86,10 @@ function AnimationLayer(settings) {
             width: width,
             height: height
         };
+    }
+
+    function toggle() {
+        toggleVisibility(layer);
     }
 
     function animate() {
@@ -95,6 +104,7 @@ function AnimationLayer(settings) {
         zoomOut: zoomOut,
         moveLeft: moveLeft,
         moveRight: moveRight,
+        toggle: toggle,
         showVieBoxParams: function () {
             console.log(viewBoxWidthHeight);
         }
@@ -114,6 +124,17 @@ function isMovePossible(move, position, minValue, maxValue, direction) {
                 return true;
             }
             break;
+        }
+    }
+}
+
+function toggleVisibility(layer) {
+    if (layer) {
+        var visibilityProp = window.getComputedStyle(layer).getPropertyValue('visibility');
+        if (visibilityProp && visibilityProp === 'hidden') {
+            layer.style.visibility = 'visible';
+        } else {
+            layer.style.visibility = 'hidden';
         }
     }
 }

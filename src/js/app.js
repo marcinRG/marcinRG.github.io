@@ -4,7 +4,11 @@ var Layer = require('./ui/animationLayer');
 
 var selector = '.s1';
 var layer = new Layer({
-    selectorQuery: selector
+    selectorQuery: selector,
+    maxHorizontal: 50,
+    minHorizontal: 25,
+    maxZoom: 300,
+    minZoom: 100
 });
 layer.showVieBoxParams();
 
@@ -12,6 +16,7 @@ var leftBtn = document.querySelector('#left-btn');
 var rightBtn = document.querySelector('#right-btn');
 var zoomInBtn = document.querySelector('#zoom-in-btn');
 var zoomOutBtn = document.querySelector('#zoom-out-btn');
+var visibilityBtn = document.querySelector('#visibility-btn');
 
 leftBtn.addEventListener('click', function () {
     layer.moveLeft(1);
@@ -24,6 +29,10 @@ zoomInBtn.addEventListener('click', function () {
 });
 zoomOutBtn.addEventListener('click', function () {
     layer.zoomOut(1);
+});
+
+visibilityBtn.addEventListener('click', function () {
+    layer.toggle();
 });
 
 // var Clouds = require('./model/clouds');
