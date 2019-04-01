@@ -16,19 +16,33 @@ function AnimationLayer(settings) {
     var zoom = 100;
     var minZoom = 100;
     var maxZoom = 250;
-    var minHorizontal = 0;
-    var maxHorizontal = 100;
+    var zoomDelta = 1;
+    var minHorizontal = 20;
+    var maxHorizontal = 80;
+    var horizontalDelta = 1;
     var viewBoxWidthHeight;
 
     function init(settings) {
-        console.log(settings);
-        width = settings.width || appSettings.maxWidthHeight.width;
-        height = settings.height || appSettings.maxWidthHeight.height;
+        setValues(settings);
         layer = getLayer(settings);
         if (layer) {
             viewBoxWidthHeight = utils.getViewBoxParams(utils.getAppSize(), getRect(), zoom);
             setPosition();
         }
+    }
+
+    function setValues(settings) {
+        width = settings.width || appSettings.maxWidthHeight.width;
+        height = settings.height || appSettings.maxWidthHeight.height;
+        posXPercentage = settings.posXPercentage || appSettings.layerDefaultSettings.posXPercentage;
+        posYPercentage = settings.posYPercentage || appSettings.layerDefaultSettings.posYPercentage;
+        zoom = settings.zoom || appSettings.layerDefaultSettings.zoom;
+        minZoom = settings.minZoom || appSettings.layerDefaultSettings.minZoom;
+        maxZoom = settings.maxZoom || appSettings.layerDefaultSettings.maxZoom;
+        zoomDelta = settings.zoomDelta || appSettings.layerDefaultSettings.zoomDelta;
+        minHorizontal = settings.minHorizontal || appSettings.layerDefaultSettings.minHorizontal;
+        maxHorizontal = settings.maxHorizontal || appSettings.layerDefaultSettings.maxHorizontal;
+        horizontalDelta = settings.horizontalDelta || appSettings.layerDefaultSettings.horizontalDelta;
     }
 
     function setViewBox(element, viewBoxWidthHeight, posX, posY) {
@@ -41,21 +55,27 @@ function AnimationLayer(settings) {
     }
 
     function zoomIn(value) {
-        var move = utils.getValueOrDefault(value, 1);
+        var move = utils.getValueOrDefault(value, zoomDelta);
         if (isMovePossible(move, zoom, minZoom, maxZoom, directions.increase)) {
             zoom = zoom + move;
-            viewBoxWidthHeight = utils.getViewBoxParams(utils.getAppSize(), getRect(), zoom);
-            setPosition();
+            doZoom(zoom);
+        } else {
+            hide();
         }
     }
 
     function zoomOut(value) {
-        var move = utils.getValueOrDefault(value, 1);
+        var move = utils.getValueOrDefault(value, zoomDelta);
         if (isMovePossible(move, zoom, minZoom, maxZoom, directions.decrease)) {
             zoom = zoom - move;
-            viewBoxWidthHeight = utils.getViewBoxParams(utils.getAppSize(), getRect(), zoom);
-            setPosition();
+            doZoom(zoom);
         }
+    }
+
+    function doZoom(zoom) {
+        show();
+        viewBoxWidthHeight = utils.getViewBoxParams(utils.getAppSize(), getRect(), zoom);
+        setPosition();
     }
 
     function setPosition() {
@@ -65,16 +85,15 @@ function AnimationLayer(settings) {
     }
 
     function moveLeft(value) {
-        var move = utils.getValueOrDefault(value, 1);
+        var move = utils.getValueOrDefault(value, horizontalDelta);
         if (isMovePossible(move, posXPercentage, minHorizontal, maxHorizontal, directions.decrease)) {
-            console.log('moveLeft, value:' + move);
             posXPercentage = posXPercentage - move;
             setPosition();
         }
     }
 
     function moveRight(value) {
-        var move = utils.getValueOrDefault(value, 1);
+        var move = utils.getValueOrDefault(value, horizontalDelta);
         if (isMovePossible(move, posXPercentage, minHorizontal, maxHorizontal, directions.increase)) {
             posXPercentage = posXPercentage + move;
             setPosition();
@@ -90,6 +109,14 @@ function AnimationLayer(settings) {
 
     function toggle() {
         toggleVisibility(layer);
+    }
+
+    function hide() {
+        changeVisibility(layer, true);
+    }
+
+    function show() {
+        changeVisibility(layer, false);
     }
 
     function animate() {
@@ -124,6 +151,16 @@ function isMovePossible(move, position, minValue, maxValue, direction) {
                 return true;
             }
             break;
+        }
+    }
+}
+
+function changeVisibility(layer, visible) {
+    if (layer) {
+        if (visible) {
+            layer.style.visibility = 'hidden';
+        } else {
+            layer.style.visibility = 'visible';
         }
     }
 }

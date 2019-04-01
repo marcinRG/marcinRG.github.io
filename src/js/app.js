@@ -2,14 +2,28 @@
 
 var Layer = require('./ui/animationLayer');
 
-var selector = '.s1';
+var selector1 = '.s1';
+var selector2 = '.s2';
 var layer = new Layer({
-    selectorQuery: selector,
-    maxHorizontal: 50,
+    selectorQuery: selector1,
     minHorizontal: 25,
-    maxZoom: 300,
-    minZoom: 100
+    maxHorizontal: 75,
+    maxZoom: 200,
+    minZoom: 100,
+    zoom: 100,
+    zoomDelta: 2,
+    horizontalDelta: 1.5
 });
+
+var layer2 = new Layer({
+    selectorQuery: selector2,
+    minHorizontal: 40,
+    maxHorizontal: 60,
+    maxZoom: 150,
+    minZoom: 100,
+    zoom: 105
+});
+
 layer.showVieBoxParams();
 
 var leftBtn = document.querySelector('#left-btn');
@@ -19,20 +33,25 @@ var zoomOutBtn = document.querySelector('#zoom-out-btn');
 var visibilityBtn = document.querySelector('#visibility-btn');
 
 leftBtn.addEventListener('click', function () {
-    layer.moveLeft(1);
+    layer.moveLeft();
+    layer2.moveLeft();
 });
 rightBtn.addEventListener('click', function () {
-    layer.moveRight(1);
+    layer.moveRight();
+    layer2.moveRight();
 });
 zoomInBtn.addEventListener('click', function () {
-    layer.zoomIn(1);
+    layer.zoomIn();
+    layer2.zoomIn();
 });
 zoomOutBtn.addEventListener('click', function () {
-    layer.zoomOut(1);
+    layer.zoomOut();
+    layer2.zoomOut();
 });
 
 visibilityBtn.addEventListener('click', function () {
     layer.toggle();
+    layer2.toggle();
 });
 
 // var Clouds = require('./model/clouds');
