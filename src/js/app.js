@@ -6,25 +6,17 @@ var selector1 = '.s1';
 var selector2 = '.s2';
 var layer = new Layer({
     selectorQuery: selector1,
-    minHorizontal: 25,
-    maxHorizontal: 75,
-    maxZoom: 200,
+    minHorizontal: 0,
+    maxHorizontal: 100,
+    maxZoom: 100,
     minZoom: 100,
     zoom: 100,
-    zoomDelta: 2,
-    horizontalDelta: 1.5
+    horizontalDelta: 2
 });
 
 var layer2 = new Layer({
-    selectorQuery: selector2,
-    minHorizontal: 40,
-    maxHorizontal: 60,
-    maxZoom: 150,
-    minZoom: 100,
-    zoom: 105
+    selectorQuery: selector2
 });
-
-layer.showVieBoxParams();
 
 var leftBtn = document.querySelector('#left-btn');
 var rightBtn = document.querySelector('#right-btn');
@@ -34,24 +26,19 @@ var visibilityBtn = document.querySelector('#visibility-btn');
 
 leftBtn.addEventListener('click', function () {
     layer.moveLeft();
-    layer2.moveLeft();
 });
 rightBtn.addEventListener('click', function () {
     layer.moveRight();
-    layer2.moveRight();
 });
 zoomInBtn.addEventListener('click', function () {
     layer.zoomIn();
-    layer2.zoomIn();
 });
 zoomOutBtn.addEventListener('click', function () {
     layer.zoomOut();
-    layer2.zoomOut();
 });
 
 visibilityBtn.addEventListener('click', function () {
-    layer.toggle();
-    layer2.toggle();
+    layer.toggleVisibility();
 });
 
 // var Clouds = require('./model/clouds');

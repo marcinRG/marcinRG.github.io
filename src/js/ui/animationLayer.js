@@ -1,6 +1,6 @@
 'use strict';
-var appSettings = require('./../settings/app.settings');
-var utils = require('./../utils/utils');
+var appSettings = require('../settings/app.settings');
+var utils = require('../utils/utils');
 
 var directions = {
     increase: 'increase',
@@ -107,8 +107,8 @@ function AnimationLayer(settings) {
         };
     }
 
-    function toggle() {
-        toggleVisibility(layer);
+    function toggleVisibility() {
+        toggleLayerVisibility(layer);
     }
 
     function hide() {
@@ -119,22 +119,14 @@ function AnimationLayer(settings) {
         changeVisibility(layer, false);
     }
 
-    function animate() {
-        console.log('layer.animate()');
-    }
-
     init(settings);
     return {
         getRect: getRect,
-        animate: animate,
         zoomIn: zoomIn,
         zoomOut: zoomOut,
         moveLeft: moveLeft,
         moveRight: moveRight,
-        toggle: toggle,
-        showVieBoxParams: function () {
-            console.log(viewBoxWidthHeight);
-        }
+        toggleVisibility: toggleVisibility
     };
 }
 
@@ -165,7 +157,7 @@ function changeVisibility(layer, visible) {
     }
 }
 
-function toggleVisibility(layer) {
+function toggleLayerVisibility(layer) {
     if (layer) {
         var visibilityProp = window.getComputedStyle(layer).getPropertyValue('visibility');
         if (visibilityProp && visibilityProp === 'hidden') {

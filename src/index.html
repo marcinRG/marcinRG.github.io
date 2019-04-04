@@ -15,7 +15,8 @@
         }
 
         .app {
-            background-color: green;
+            background-image: linear-gradient(to bottom,
+            #2ab0ed 0%, #9fd8ef 25%, #bfe8f9 30%, #e4f5fc 100%);
             position: relative;
             box-sizing: border-box;
             width: 100%;
@@ -34,6 +35,18 @@
             height: 100vh;
         }
 
+        #mountain-far-shadow path {
+            fill: #98775D;
+            stroke: #98775D;
+            stroke-width: 1px;
+        }
+
+        #mountain-silhouette path {
+            fill: #B8A290;
+            stroke: #B8A290;
+            stroke-width: 1px;
+        }
+
         .layer-controls {
             display: block;
             position: absolute;
@@ -48,17 +61,30 @@
 </head>
 <body class="app">
 <svg class="s1" preserveAspectRatio="none">
-    <rect x="0" y="0" width="2600" height="1000" fill="transparent" stroke-width="3" stroke="brown"></rect>
-    <rect x="325" y="125" width="1950" height="750" fill="transparent" stroke-width="3" stroke="magenta"></rect>
-    <rect x="485" y="200" width="1630" height="600" fill="transparent" stroke-width="3" stroke="yellow"></rect>
-    <rect x="650" y="250" width="1300" height="500" fill="lightgreen" stroke-width="3" stroke="brown"></rect>
-    <rect height="100" width="100" x="0" y="0" fill="orange" stroke-width="1" stroke="white"></rect>
-    <line x1="1300" y1="0" x2="1300" y2="1000" stroke-width="2" stroke="blue"></line>
-    <line x1="0" y1="500" x2="2600" y2="500" stroke-width="2" stroke="blue"></line>
-    <rect height="100" width="100" x="2500" y="0" fill="orange" stroke-width="1" stroke="white"></rect>
-    <rect height="100" width="100" x="2500" y="900" fill="orange" stroke-width="1" stroke="white"></rect>
-    <rect height="100" width="100" x="0" y="900" fill="orange" stroke-width="1" stroke="white"></rect>
+    <g id="mountain-silhouette">
+        <path id="mountains"
+              d="M2600,711.626l-314,-348.626l-264,337l-360,-310l-362,399l-324,-365l-178,237l-204,-308l-234,422l-214,-225l-146,169l0,281l2600,0l0,-288.374l0,0Z"/>
+    </g>
+    <g id="mountain-far-shadow">
+        <path d="M1300,786l-188,214l27.729,-199.114l-93.729,-81.886l-32,-90l-25,-64l-3,-54l-27,-33l17.525,-53.408l323.475,361.408Z"/>
+        <path d="M594,353l-15,83l37,27l-11,48l21,58l41,75l-39,97l45,105l60,154l162,0l-97,-339l-204,-308Z"/>
+        <path d="M1662,390l360,310l-87,113l-273,-423Z" />
+        <path d="M2286,363l314,348.626l-78,74.374l-236,-423Z" />
+        <path d="M146,550l47,173l220,277l166,0l-219,-225l-214,-225Z"/>
+    </g>
 </svg>
+<!--<svg class="s1" preserveAspectRatio="none">-->
+<!--<rect x="0" y="0" width="2600" height="1000" fill="transparent" stroke-width="3" stroke="brown"></rect>-->
+<!--<rect x="325" y="125" width="1950" height="750" fill="transparent" stroke-width="3" stroke="magenta"></rect>-->
+<!--<rect x="485" y="200" width="1630" height="600" fill="transparent" stroke-width="3" stroke="yellow"></rect>-->
+<!--<rect x="650" y="250" width="1300" height="500" fill="lightgreen" stroke-width="3" stroke="brown"></rect>-->
+<!--<rect height="100" width="100" x="0" y="0" fill="orange" stroke-width="1" stroke="white"></rect>-->
+<!--<line x1="1300" y1="0" x2="1300" y2="1000" stroke-width="2" stroke="blue"></line>-->
+<!--<line x1="0" y1="500" x2="2600" y2="500" stroke-width="2" stroke="blue"></line>-->
+<!--<rect height="100" width="100" x="2500" y="0" fill="orange" stroke-width="1" stroke="white"></rect>-->
+<!--<rect height="100" width="100" x="2500" y="900" fill="orange" stroke-width="1" stroke="white"></rect>-->
+<!--<rect height="100" width="100" x="0" y="900" fill="orange" stroke-width="1" stroke="white"></rect>-->
+<!--</svg>-->
 <svg class="s2" preserveAspectRatio="none">
     <rect x="0" y="0" width="2600" height="1000" fill="transparent" stroke-width="3" stroke="brown"></rect>
     <rect x="325" y="125" width="1950" height="750" fill="transparent" stroke-width="3" stroke="magenta"></rect>
