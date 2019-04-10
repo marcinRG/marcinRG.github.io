@@ -126,7 +126,8 @@ function AnimationLayer(settings) {
         zoomOut: zoomOut,
         moveLeft: moveLeft,
         moveRight: moveRight,
-        toggleVisibility: toggleVisibility
+        toggleVisibility: toggleVisibility,
+        layer: layer
     };
 }
 

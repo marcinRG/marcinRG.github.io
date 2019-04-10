@@ -8,9 +8,6 @@ var layer = new Layer({
     selectorQuery: selector1,
     minHorizontal: 0,
     maxHorizontal: 100,
-    maxZoom: 100,
-    minZoom: 100,
-    zoom: 100,
     horizontalDelta: 2
 });
 
