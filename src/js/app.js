@@ -1,6 +1,8 @@
 'use strict';
 
 var Layer = require('./ui/animationLayer');
+var CloudsFarAway = require('./model/cloudsFarAway');
+var SunAndStars = require('./model/sunAndStars');
 
 var selector1 = '.s1';
 var selector2 = '.s2';
@@ -14,6 +16,21 @@ var layer = new Layer({
 var layer2 = new Layer({
     selectorQuery: selector2
 });
+
+var cloudsFarAwayLayer = new CloudsFarAway({
+    selectorQuery: '.clouds.far-away'
+});
+
+var sunAndStarsLayer = new SunAndStars({
+    selectorQuery: '.sun-and-stars'
+});
+
+function animate() {
+    cloudsFarAwayLayer.animate();
+    window.requestAnimationFrame(animate);
+}
+
+window.requestAnimationFrame(animate);
 
 var leftBtn = document.querySelector('#left-btn');
 var rightBtn = document.querySelector('#right-btn');

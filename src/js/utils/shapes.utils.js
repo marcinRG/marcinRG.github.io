@@ -1,5 +1,6 @@
 'use strict';
 var utils = require('./utils');
+var svgUtils = require('./svg.utils');
 var Cloud = require('./../model/cloud');
 
 function getCloudsShapes(cloudSelector) {
@@ -12,6 +13,19 @@ function getCloudsShapes(cloudSelector) {
     }
 }
 
+function createStar(maxWidth, maxHeight, maxRadius) {
+    var cX = utils.getRandomInt(0, maxWidth);
+    var cY = utils.getRandomInt(0, maxHeight);
+    var r = utils.getRandomInt(1, maxRadius);
+    var star = svgUtils.createCircle({
+        className: 'star',
+        cx: cX,
+        cy: cY,
+        r: r
+    });
+    return star;
+}
+
 function createCloud(direction, maxWidth, maxHeight, maxSpeed, cloudPath) {
     var posX = utils.getRandomInt(0, maxWidth);
     var posY = utils.getRandomInt(0, maxHeight);
@@ -19,7 +33,6 @@ function createCloud(direction, maxWidth, maxHeight, maxSpeed, cloudPath) {
     var cloud = new Cloud({
         d: cloudPath,
         className: 'cloud',
-        'stroke-width': '1',
         x: posX,
         y: posY,
         speed: speed,
@@ -30,5 +43,6 @@ function createCloud(direction, maxWidth, maxHeight, maxSpeed, cloudPath) {
 
 module.exports = {
     getCloudsShapes: getCloudsShapes,
-    createCloud: createCloud
+    createCloud: createCloud,
+    createStar: createStar
 };
